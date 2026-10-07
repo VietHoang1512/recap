@@ -1,0 +1,161 @@
+{    
+    "share_data/ViRFT_COCO_base65":{
+        "file_name": "${DATA_ROOT}/ViRFT_COCO_base65",
+        "formatting": "ViRFT_COCO",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/sat-problems-dataset":{
+        "file_name": "${DATA_ROOT}/sat-problems-dataset",
+        "formatting": "SAT",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/sat-problems-dataset-test":{
+        "file_name": "${DATA_ROOT}/sat-problems-dataset-test",
+        "formatting": "SAT",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/sat-problems-dataset-mini":{
+        "file_name": "${DATA_ROOT}/sat-problems-dataset-mini",
+        "formatting": "SAT",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/ViRFT_COCO":{
+        "file_name": "${DATA_ROOT}/ViRFT_COCO",
+        "formatting": "ViRFT_COCO",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/ViRFT_COCO_SFT":{
+        "file_name": "${DATA_ROOT}/ViRFT_COCO",
+        "formatting": "ViRFT_COCO_SFT",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/GEOQA_R1V_Train_8K":{
+        "file_name": "${DATA_ROOT}/GEOQA_R1V_Train_8K",
+        "formatting": "GEOQA",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/lisa-problems-dataset-bbox":{
+        "file_name": "${DATA_ROOT}/lisa-problems-dataset",
+        "formatting": "LISA_BBOX",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },    
+    "share_data/lisa-problems-dataset":{
+        "file_name": "${DATA_ROOT}/lisa-problems-dataset",
+        "formatting": "LISA",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/lisa-rescale-train":{
+        "file_name": "${DATA_ROOT}/lisa-rescale-train",
+        "formatting": "LISA",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },    
+    "share_data/lisa-correct-train":{
+        "file_name": "${DATA_ROOT}/lisa-correct-train",
+        "formatting": "LISA",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/lisa-correct-test":{
+        "file_name": "${DATA_ROOT}/lisa-correct-test",
+        "formatting": "LISA",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/lisa-problems-dataset-sft":{
+        "file_name": "${DATA_ROOT}/lisa-problems-dataset",
+        "formatting": "LISA_SFT",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/lisa-problems-dataset-test":{
+        "file_name": "${DATA_ROOT}/lisa-problems-dataset-test",
+        "formatting": "LISA",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/scienceqa-problems-dataset":{
+        "file_name": "${DATA_ROOT}/scienceqa-problems-dataset",
+        "formatting": "SCIENCEQA",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/scienceqa-problems-dataset-test":{
+        "file_name": "${DATA_ROOT}/scienceqa-problems-dataset-test",
+        "formatting": "SCIENCEQA",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/geoqav-problems-dataset":{
+        "file_name": "${DATA_ROOT}/geoqav-problems-dataset",
+        "formatting": "GEOQAV",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/ViRL39K":{
+        "file_name": "${DATA_ROOT}/ViRL39K",
+        "formatting": "ViRL39K",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/ThinkLite-VL-70k":{
+        "file_name": "${DATA_ROOT}/ThinkLite-VL-70k",
+        "formatting": "ThinkLite70k",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/ThinkLite-VL-11k":{
+        "file_name": "${DATA_ROOT}/ThinkLite-VL-hard-11k",
+        "formatting": "ThinkLite11k",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },
+    "share_data/LLaVA-OneVision-OCR":{
+        "file_name": "${DATA_ROOT}/LLaVA-OneVision-OCR",
+        "formatting": "LLaVA_OneVision_OCR",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },    
+    "share_data/LLaVA-OneVision-OCR-10k":{
+        "file_name": "${DATA_ROOT}/LLaVA-OneVision-OCR-10k",
+        "formatting": "LLaVA_OneVision_OCR_10k",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },  
+    "share_data/LLaVA-OneVision-OCR-10k-128":{
+        "file_name": "${DATA_ROOT}/LLaVA-OneVision-OCR-10k-128",
+        "formatting": "LLaVA_OneVision_OCR_10k_128",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },  
+    "share_data/LLaVA-OneVision-OCR-5k":{
+        "file_name": "${DATA_ROOT}/LLaVA-OneVision-OCR-5k",
+        "formatting": "LLaVA_OneVision_OCR_5k",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    }, 
+    "share_data/RefCOCO":{
+        "file_name": "${DATA_ROOT}/RefCOCO/",
+        "formatting": "RefCOCO",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    },      
+    "share_data/RLAIF-V-Dataset":{
+        "file_name": "${DATA_ROOT}/RLAIF-V-Dataset",
+        "formatting": "RLAIF_V",
+        "load_from": "disk",
+        "file_ext": "arrow"
+    }   
+    
+}
+
+ 

@@ -1,0 +1,40 @@
+# Data and checkpoints (anchored to the repo root -- `data/` unanchored would also
+# swallow scripts/data/)
+/share_data/
+/data/
+/outputs/
+/logs/
+
+# Generated configs (rebuild with: python scripts/make_configs.py)
+/configs/generated/
+
+# Experiment tracking
+wandb/
+*.log
+output*.txt
+*_reward_log.txt
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Large / binary artifacts
+*.pkl
+*.pt
+*.safetensors
+*.png
+*.jpg
+*.jpeg
+*.gif
+*.mp4
+
+# ...except figures used by the README
+!assets/*.png

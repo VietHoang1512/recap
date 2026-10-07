@@ -1,0 +1,72 @@
+# ---------------------------------------------------------------------------------------------
+# RECAP base configuration template.
+#
+# `scripts/make_configs.py` deep-merges per-run overrides onto this file and writes the result
+# to configs/generated/. Edit this file to change a setting for *every* run; edit the RUNS table
+# in the generator to change one.
+#
+# The config is flat because TrlParser splits it across four dataclasses:
+#   GRPOConfig        (src/open_r1/configs.py)  <- trl.GRPOConfig <- transformers.TrainingArguments
+#   GRPOModelConfig   (src/open_r1/configs.py)  <- trl.ModelConfig
+#   GRPOScriptArguments (src/open_r1/configs.py)
+#   vLLMScriptArguments (src/open_r1/vllm_serve.py)
+# ---------------------------------------------------------------------------------------------
+
+#### TrainingArguments ####
+run_name: PLACEHOLDER                 # set by the generator
+output_dir: PLACEHOLDER               # set by the generator, under $OUTPUT_ROOT
+overwrite_output_dir: true
+model_name_or_path: Qwen/Qwen2.5-VL-3B-Instruct
+deepspeed: src/open_r1/local_scripts/zero3.json
+per_device_train_batch_size: 2
+gradient_accumulation_steps: 1
+logging_steps: 1
+report_to:
+- wandb
+gradient_checkpointing: false
+num_train_epochs: 1
+save_strategy: steps
+save_steps: 500
+seed: 42
+warmup_ratio: 0.1
+bf16: true
+save_only_model: true
+do_eval: false
+eval_strategy: 'no'
+
+#### trl.GRPOConfig ####
+max_prompt_length: null
+num_generations: 4                    # G, rollouts per prompt
+use_vllm: false
+beta: 0.0                             # reference-KL coefficient; 0 disables it (see paper S5.1)
+
+#### ours (GRPOConfig extensions) ####
+freeze_vision_modules: false
+
+#### GRPOModelConfig / trl.ModelConfig ####
+max_pixels: 401408
+attn_implementation: flash_attention_2
+torch_dtype: bfloat16
+model_class_name: qwen2vl
+
+#### GRPOScriptArguments ####
+dataset_dir: .                        # directory holding src/open_r1/dataset_info.json
+split: train
+dataset_test_split: test
+preprocessing_num_workers: 16
+use_system_prompt: false
+mix_strategy: concat                  # concat | interleave_under | interleave_over | interleave_custom
+mixed_sampler: uniform                # uniform (sample domains evenly) | default (proportional)
+
+# ---------------------------------------------------------------------------------------------
+# RECAP objective reweighting.
+#
+# Implemented in src/open_r1/trainers/mixed_trainer.py: the knobs are read at :524-534, and the
+# weights are computed at :1724-1802 (GRPO branch) and :1990-2042 (SFT/mixed branch).
+# ---------------------------------------------------------------------------------------------
+normalize_loss: dwa                   # dwa = RECAP reweighting | ema | none (fixed weights)
+iteration_window: 10                  # W. Short-horizon window; 2W steps of history are kept.
+softmax_temp: 5.0                     # T. Higher = flatter weights; see appendix Fig. "temperature".
+convergence_instablity_tradeoff: 0.5  # alpha. s = alpha*convergence + (1-alpha)*instability.
+                                      # Set to -1 to anneal alpha = 1 - step/max_steps.
+ema_alpha: 0.99                       # smoothing for the logged per-objective reward EMA

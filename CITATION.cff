@@ -1,0 +1,58 @@
+cff-version: 1.2.0
+message: "If you use this code, please cite the paper below."
+title: "Beyond Reasoning Gains: Mitigating General-Capability Forgetting in Large Reasoning Models"
+abstract: >-
+  Reinforcement learning with verifiable rewards (RLVR) has delivered impressive gains in
+  mathematical and multimodal reasoning, but introduces a significant risk of capability
+  regression. We propose RECAP, a replay strategy with dynamic objective reweighting for general
+  knowledge preservation. The reweighting mechanism adapts online using short-horizon signals of
+  convergence and instability, shifting post-training focus away from saturated objectives and
+  toward underperforming or volatile ones.
+authors:
+  - family-names: Phan
+    given-names: Hoang
+  - family-names: Yang
+    given-names: Xianjun
+  - family-names: Yao
+    given-names: Yuanshun
+  - family-names: Zhang
+    given-names: Jingyu
+  - family-names: Bi
+    given-names: Shengjie
+  - family-names: Tang
+    given-names: Xiaocheng
+  - family-names: Khabsa
+    given-names: Madian
+  - family-names: Liu
+    given-names: Lijuan
+  - family-names: Lei
+    given-names: Deren
+repository-code: "https://github.com/VietHoang1512/recap"
+url: "https://aclanthology.org/2026.findings-acl.1717/"
+preferred-citation:
+  type: conference-paper
+  title: "Beyond Reasoning Gains: Mitigating General-Capability Forgetting in Large Reasoning Models"
+  year: 2026
+  collection-title: "Findings of the Association for Computational Linguistics: ACL 2026"
+  publisher:
+    name: "Association for Computational Linguistics"
+  url: "https://aclanthology.org/2026.findings-acl.1717/"
+  authors:
+    - family-names: Phan
+      given-names: Hoang
+    - family-names: Yang
+      given-names: Xianjun
+    - family-names: Yao
+      given-names: Yuanshun
+    - family-names: Zhang
+      given-names: Jingyu
+    - family-names: Bi
+      given-names: Shengjie
+    - family-names: Tang
+      given-names: Xiaocheng
+    - family-names: Khabsa
+      given-names: Madian
+    - family-names: Liu
+      given-names: Lijuan
+    - family-names: Lei
+      given-names: Deren
