@@ -1,7 +1,5 @@
 **Beyond Reasoning Gains: Mitigating General-Capability Forgetting in Large Reasoning Models**
 
-Findings of the Association for Computational Linguistics: ACL 2026
-
 [![ACL Anthology](https://img.shields.io/badge/ACL-2026.findings--acl.1717-ed1c24.svg)](https://aclanthology.org/2026.findings-acl.1717/)
 [![arXiv](https://img.shields.io/badge/arXiv-2510.21978-b31b1b.svg)](https://arxiv.org/abs/2510.21978)
 
@@ -17,6 +15,8 @@ on the current task and therefore do not guarantee preservation of broader knowl
 commonly used experience replay across heterogeneous domains makes it nontrivial to decide how
 much training emphasis each objective should receive.
 
+![Overview of RECAP: replaying general-domain data alongside the target reasoning task, starting from uniform objective weights, then reweighting objectives from their observed convergence behavior](assets/overview.png)
+
 **RECAP** is a replay strategy with dynamic objective reweighting for general knowledge
 preservation. It addresses forgetting in RLVR by (i) replaying general-capability data alongside
 reasoning data, and (ii) dynamically reweighting objectives online using local estimates of
@@ -24,21 +24,11 @@ progress and instability for individual objectives, shifting the post-training f
 saturated objectives and toward underperforming or volatile ones. The method is end-to-end and
 readily applicable to existing RLVR pipelines without training additional models or heavy tuning.
 
-![Overview of RECAP: replaying general-domain data alongside the target reasoning task, starting from uniform objective weights, then reweighting objectives from their observed convergence behavior](assets/overview.png)
-
-**Overview of RECAP.** Along with the target reasoning task, we sample data from general domains
-to maintain that knowledge during finetuning. Initially, the objectives of interest are weighted
-uniformly to optimize the main model. After a few iterations, we record the convergence behavior
-of individual objectives. Based on this behavior, we adjust the focus to prevent any objective
-from dominating and assign less weight to saturated ones.
 
 ## Results
 
-### RLVR-only setting (Qwen2.5-VL-3B)
+### RLVR-only setting
 
-Accuracy on six benchmarks, where the MoDoMoDo baseline is trained to maximize performance. For
-this table only, we use the rule-based evaluator on MathVista instead of `gpt-3.5-turbo`, to
-align with MoDoMoDo.
 
 | Model | SAT | ScienceQA | MathVista (mini) | ChartQA | InfoVQA | MMMU |
 |---|---|---|---|---|---|---|
@@ -55,12 +45,7 @@ align with MoDoMoDo.
 | MoDoMoDo | 49.95 | 65.74 | 32.2 | **70.40** | 59.88 | 39.11 |
 | **RECAP** | **55.19** | **71.59** | **33.2** | **70.40** | **60.78** | **42.44** |
 
-### Hybrid setting (Qwen2.5-VL-7B)
-
-Accuracy (higher is better) on nine perception and reasoning benchmarks. The first block is
-open-source reasoning models with different backbones; the second compares variants finetuned
-from the same Qwen2.5-VL-7B base model. **Bold** = best, *italic* = second best within the
-Qwen2.5-VL-7B family.
+### Hybrid setting
 
 | Model | LISA | MMMU-PRO | AI2D | MathVista | MathVision | MathVerse | MMBench | VizWiz | OCRBench v2 |
 |---|---|---|---|---|---|---|---|---|---|
@@ -89,9 +74,6 @@ python -m venv .venv && source .venv/bin/activate
 pip install torch --index-url https://download.pytorch.org/whl/cu121   # match your CUDA
 pip install -r requirements.txt
 ```
-
-`flash-attn` sometimes needs `pip install flash-attn --no-build-isolation`.
-
 ## Data
 
 ```bash
@@ -101,7 +83,6 @@ python scripts/prepare_data.py --list       # what is downloadable vs built loca
 python scripts/prepare_data.py              # fetch the Hub-hosted datasets
 ```
 
-Two replay sets are constructed rather than downloaded:
 
 ```bash
 # LLaVA-OneVision OCR replay (concatenates the OCR configs, downsamples to 128px)
@@ -116,12 +97,8 @@ python scripts/data/build_refcoco.py \
 ## Train
 
 ```bash
-OUTPUT_ROOT=/path/to/checkpoints python scripts/make_configs.py   # writes configs/generated/
 bash scripts/train.sh configs/generated/rlvr_only/recap.yaml
 ```
-
-`scripts/make_configs.py --list` shows the runs behind the paper's tables; each is
-`configs/template.yaml` plus a small override set defined in that script.
 
 ### The knobs that matter
 
@@ -142,12 +119,6 @@ to `$LOG_PATH`.
 
 ![Reward, convergence rate and inverse signal-to-noise ratio over training, for the format, accuracy, IoU and next-token-prediction objectives](assets/reward.png)
 
-**Different rewards exhibit different convergence behavior.** While the `format` reward is easy
-to optimize and initially has the highest convergence rate, it quickly saturates and thus yields
-a near-unity convergence rate (*c* ~ 1) and low instability (*i* ~ 0) after 50 steps. By contrast,
-the reasoning `accuracy` fluctuates the most, thereby steering the optimization toward the
-corresponding objective. `IoU` and `ntp` denote the IoU reward and next-token-prediction accuracy
-during training. The result is obtained in the first setting in our experiments.
 
 ## Evaluate
 
@@ -188,16 +159,12 @@ scripts/                        data prep, training, evaluation
 ## Citation
 
 ```bibtex
-@inproceedings{phan2026recap,
-  title     = {Beyond Reasoning Gains: Mitigating General-Capability Forgetting
-               in Large Reasoning Models},
-  author    = {Phan, Hoang and Yang, Xianjun and Yao, Yuanshun and Zhang, Jingyu
-               and Bi, Shengjie and Tang, Xiaocheng and Khabsa, Madian
-               and Liu, Lijuan and Lei, Deren},
-  booktitle = {Findings of the Association for Computational Linguistics: ACL 2026},
-  publisher = {Association for Computational Linguistics},
-  year      = {2026},
-  url       = {https://aclanthology.org/2026.findings-acl.1717/}
+@inproceedings{phan2026beyond,
+  title={Beyond Reasoning Gains: Mitigating General-Capability Forgetting in Large Reasoning Models},
+  author={Phan, Hoang and Yang, Xianjun and Yao, Yuanshun and Zhang, Jingyu and Bi, Shengjie and Tang, Xiaocheng and Khabsa, Madian and Liu, Lijuan and Lei, Deren},
+  booktitle={Findings of the Association for Computational Linguistics: ACL 2026},
+  pages={34368--34398},
+  year={2026}
 }
 ```
 
